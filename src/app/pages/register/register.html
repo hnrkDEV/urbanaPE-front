@@ -1,17 +1,37 @@
-<div class="auth-container">
-  <h1>Criar conta</h1>
+<div class="auth-wrapper">
+  <div class="auth-card" @fadeIn>
+    <div class="logo">
+      <img src="urban-icon.png" class="logo-icon" />
+    </div>
 
-  <form (ngSubmit)="register()">
-    <input type="email" placeholder="Email" [(ngModel)]="email" name="email" required />
+    <h2>Registre-se</h2>
+    <p class="subtitle">Leva menos de um minuto</p>
 
-    <input type="password" placeholder="Senha" [(ngModel)]="senha" name="senha" required />
+    <form (ngSubmit)="register()">
+      <div class="field">
+        <input type="text" placeholder=" " [(ngModel)]="nome" name="nome" required />
+        <label>Nome</label>
+      </div>
 
-    <button type="submit" [disabled]="loading">
-      {{ loading ? 'Criando...' : 'Criar conta' }}
-    </button>
-  </form>
+      <div class="field">
+        <input type="email" placeholder=" " [(ngModel)]="email" name="email" required />
+        <label>Email</label>
+      </div>
 
-  <p class="error" *ngIf="error">{{ error }}</p>
+      <div class="field">
+        <input type="password" placeholder=" " [(ngModel)]="senha" name="senha" required />
+        <label>Senha</label>
+      </div>
 
-  <a routerLink="/login">Já tenho conta</a>
+      <button type="submit" class="primary" [disabled]="loading">
+        {{ loading ? 'Criando conta...' : 'Criar conta' }}
+      </button>
+    </form>
+
+    <div class="divider"></div>
+
+    <button class="link" routerLink="/login">Já tenho conta</button>
+
+    <p class="error" *ngIf="error">{{ error }}</p>
+  </div>
 </div>

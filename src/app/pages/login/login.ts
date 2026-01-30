@@ -5,6 +5,8 @@ import { Router, RouterModule } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
 import { AuthService } from '../../auth/auth.service';
 
+import { animate, style, transition, trigger } from '@angular/animations';
+
 interface JwtPayload {
   role: 'ADMIN' | 'CLIENT';
 }
@@ -15,6 +17,14 @@ interface JwtPayload {
   imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './login.html',
   styleUrl: './login.css',
+  animations: [
+    trigger('fadeIn', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(15px)' }),
+        animate('400ms ease-out', style({ opacity: 1, transform: 'translateY(0)' })),
+      ]),
+    ]),
+  ],
 })
 export class Login {
   email = '';

@@ -1,3 +1,4 @@
+import { animate, style, transition, trigger } from '@angular/animations';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -10,6 +11,14 @@ import { AuthService } from '../../auth/auth.service';
   imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './register.html',
   styleUrl: './register.css',
+  animations: [
+    trigger('fadeIn', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(15px)' }),
+        animate('400ms ease-out', style({ opacity: 1, transform: 'translateY(0)' })),
+      ]),
+    ]),
+  ],
 })
 export class Register {
   nome = '';
