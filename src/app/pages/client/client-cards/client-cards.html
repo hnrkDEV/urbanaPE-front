@@ -1,0 +1,17 @@
+<h1>Meus Cartões</h1>
+
+<ng-container *ngIf="cards$ | async as cards; else loading">
+  <table class="table" *ngIf="cards.length; else empty">
+    <tr *ngFor="let card of cards">
+      <td>{{ card.numeroCartao }}</td>
+      <td>{{ card.tipoCartao }}</td>
+      <td>{{ card.status ? 'Ativo' : 'Inativo' }}</td>
+      <td>
+        <button (click)="toggle(card)">Toggle</button>
+      </td>
+    </tr>
+  </table>
+</ng-container>
+
+<ng-template #loading>Carregando...</ng-template>
+<ng-template #empty>Nenhum cartão.</ng-template>

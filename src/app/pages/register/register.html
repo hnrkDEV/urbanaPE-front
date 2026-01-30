@@ -1,0 +1,17 @@
+<div class="auth-container">
+  <h1>Criar conta</h1>
+
+  <form (ngSubmit)="register()">
+    <input type="email" placeholder="Email" [(ngModel)]="email" name="email" required />
+
+    <input type="password" placeholder="Senha" [(ngModel)]="senha" name="senha" required />
+
+    <button type="submit" [disabled]="loading">
+      {{ loading ? 'Criando...' : 'Criar conta' }}
+    </button>
+  </form>
+
+  <p class="error" *ngIf="error">{{ error }}</p>
+
+  <a routerLink="/login">Já tenho conta</a>
+</div>

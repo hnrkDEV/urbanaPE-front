@@ -1,0 +1,21 @@
+<div class="layout">
+  <aside class="sidebar">
+    <h2>Admin</h2>
+    <nav>
+      <a routerLink="/admin" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+        >Dashboard</a
+      >
+      <a routerLink="/admin/cards" routerLinkActive="active">Cartões</a>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <header class="header">
+      <span>Bem-vindo(a), {{ (user$ | async)?.nome }}!</span>
+      <button (click)="logout()" class="logout-btn">Sair</button>
+    </header>
+    <section class="page">
+      <router-outlet (activate)="onActivate($event)"></router-outlet>
+    </section>
+  </main>
+</div>

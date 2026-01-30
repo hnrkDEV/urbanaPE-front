@@ -1,0 +1,49 @@
+<h1>Cartões</h1>
+
+<ng-container *ngIf="cards$ | async as cards; else loading">
+  <table class="table" *ngIf="cards.length; else empty">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Nº Cartão</th>
+        <th>Tipo</th>
+        <th>Status</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let card of cards">
+        <td>{{ card.id }}</td>
+        <td>{{ card.nome }}</td>
+        <td>{{ card.numeroCartao }}</td>
+        <td>{{ card.tipoCartao }}</td>
+        <td>
+          <span [style.color]="card.status ? 'green' : 'red'">
+            {{ card.status ? 'Ativo' : 'Inativo' }}
+          </span>
+        </td>
+        <td>
+          <button class="btn" (click)="toggleCard(card)">
+            {{ card.status ? 'Desativar' : 'Ativar' }}
+          </button>
+
+          <button class="btn danger" (click)="deleteCard(card)">Excluir</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</ng-container>
+
+<ng-template #loading>
+  <div class="skeleton">
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+  </div>
+</ng-template>
+
+<ng-template #empty>
+  <p>Nenhum cartão encontrado.</p>
+</ng-template>
