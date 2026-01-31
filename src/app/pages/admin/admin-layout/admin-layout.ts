@@ -16,12 +16,29 @@ export class AdminLayout implements OnInit {
 
   constructor(private router: Router, private userService: UserService) {}
 
+  isSidebarOpen = false;
+
+  toggleSidebar() {
+    this.isSidebarOpen = !this.isSidebarOpen;
+  }
+
+  onNavigate() {
+    setTimeout(() => {
+      this.isSidebarOpen = false;
+    }, 0);
+  }
+
+  closeSidebar() {
+    this.isSidebarOpen = false;
+  }
+
   ngOnInit() {
     this.user$ = this.userService.me();
   }
 
-  onActivate(component: { loadCards?: () => void }) {
+  onActivate(component: { loadCards?: () => void; loadUsers?: () => void }) {
     component.loadCards?.();
+    component.loadUsers?.();
   }
 
   logout() {

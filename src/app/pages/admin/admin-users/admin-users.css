@@ -1,0 +1,163 @@
+.admin-users {
+  padding: 1rem;
+}
+
+.page-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.page-header h1 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.page-header p {
+  margin-top: 0.2rem;
+  color: #59c1a97a;
+}
+
+.alert {
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  color: #9a3412;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.actions-col {
+  text-align: start;
+}
+
+.role {
+  font-size: 0.7rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.role.admin {
+  background: #e0e7ff;
+  color: #1e3a8a;
+}
+
+.role.client {
+  background: #f1f5f9;
+  color: #334155;
+}
+
+.btn {
+  padding: 0.38rem 0.65rem;
+  font-size: 0.75rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease, opacity 0.2s ease;
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.btn.danger {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.btn.danger:hover:not(:disabled) {
+  background: #fecaca;
+}
+
+.btn.refresh {
+  background: #0f172a;
+  color: #fff;
+}
+
+.btn.refresh:hover:not(:disabled) {
+  opacity: 0.92;
+}
+
+.skeleton .line {
+  height: 14px;
+  background: #e5e7eb;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  animation: pulse 1.4s infinite;
+}
+
+.table th {
+  background: #0f172a;
+  color: #9ca3af;
+}
+
+.table td {
+  color: #e5e7eb;
+}
+
+.table tr:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+.empty {
+  padding: 2rem;
+  text-align: center;
+  color: #64748b;
+}
+
+@media (max-width: 768px) {
+  .page-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .table {
+    border: none;
+  }
+
+  .table thead {
+    display: none;
+  }
+
+  .table tr {
+    display: block;
+    margin-bottom: 1rem;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb1e;
+    padding: 0.75rem;
+  }
+
+  .table td {
+    display: flex;
+    justify-content: space-between;
+    border: none;
+    padding: 0.4rem 0;
+  }
+
+  .table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    margin-right: 1rem;
+  }
+}

@@ -4,6 +4,7 @@ import { roleGuard } from './auth/role.guard';
 import { AdminCards } from './pages/admin/admin-cards/admin-cards';
 import { AdminHome } from './pages/admin/admin-home/admin-home';
 import { AdminLayout } from './pages/admin/admin-layout/admin-layout';
+import { AdminUsers } from './pages/admin/admin-users/admin-users';
 import { ClientHome } from './pages/client/client-home/client-home';
 import { ClientLayout } from './pages/client/client-layout/client-layout';
 import { Login } from './pages/login/login';
@@ -20,6 +21,7 @@ export const routes: Routes = [
     children: [
       { path: '', component: AdminHome },
       { path: 'cards', component: AdminCards },
+      { path: 'users', component: AdminUsers },
     ],
   },
 

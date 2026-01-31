@@ -1,18 +1,39 @@
+.container {
+  display: flex;
+  min-height: 100vh;
+  background: rgb(36, 36, 36);
+}
+
+.login-img {
+  position: relative;
+  width: 50%;
+  background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 1)),
+    url('../../../../public/login-img.jpeg');
+  background-position: center;
+  background-size: cover;
+}
+
 .auth-wrapper {
-  height: 100vh;
-  background: radial-gradient(circle at top, #2563eb, #020617);
+  width: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: Inter, system-ui, sans-serif;
+}
+
+.login-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
 }
 
 .auth-card {
   width: 100%;
+  margin: auto;
   max-width: 380px;
-  background: rgba(255, 255, 255, 0.95);
+  background: #ffffff0f;
   border-radius: 14px;
-  padding: 2.5rem 2rem;
+  padding: 1.5rem 1rem;
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(10px);
 }
@@ -36,12 +57,13 @@ h2 {
   margin-bottom: 0.25rem;
   margin-top: 0;
   padding-top: 0;
+  color: white;
 }
 
 .subtitle {
   text-align: center;
   font-size: 0.9rem;
-  color: #64748b;
+  color: #979da7;
   margin-bottom: 1.5rem;
   margin-top: 0;
   padding: 0;
@@ -78,13 +100,15 @@ h2 {
 .field input:not(:placeholder-shown) + label {
   top: -6px;
   font-size: 0.7rem;
-  color: #2563eb;
+  color: #292929fa;
+  border-top-left-radius: 10%;
+  border-top-right-radius: 10%;
 }
 
 button.primary {
   width: 100%;
   padding: 0.8rem;
-  background: linear-gradient(135deg, #2563eb, #1e40af);
+  background: #59c1a9;
   border: none;
   border-radius: 8px;
   color: #fff;
@@ -95,13 +119,13 @@ button.primary {
 
 button.primary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+  box-shadow: 0 8px 20px rgba(37, 100, 235, 0.075);
 }
 
 button.link {
   background: none;
   border: none;
-  color: #2563eb;
+  color: #ffff;
   cursor: pointer;
   width: 100%;
 }
@@ -113,8 +137,8 @@ button.link {
 }
 
 .field input:focus {
-  border-color: #2563eb;
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+  border-color: #59c1a9;
+  box-shadow: 0 0 0 1px rgba(37, 235, 86, 0.1);
 }
 
 button.primary:active {
@@ -123,39 +147,27 @@ button.primary:active {
 }
 
 @media (max-width: 480px) {
+  .container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .login-img {
+    display: none;
+  }
+
   .auth-wrapper {
-    padding: 1rem;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .auth-card {
-    padding: 2rem 1.5rem;
-    border-radius: 12px;
-  }
-
-  .logo-icon {
-    width: 7rem;
-  }
-
-  .logo h1 {
-    font-size: 1.4rem;
-  }
-
-  h2 {
-    font-size: 1.25rem;
-  }
-
-  .subtitle {
-    font-size: 0.85rem;
-  }
-
-  .field input {
-    padding: 0.85rem 0.75rem;
-    font-size: 0.95rem;
-  }
-
-  button.primary {
-    padding: 0.85rem;
-    font-size: 0.95rem;
+    width: 90%;
+    max-width: 360px;
   }
 }
 

@@ -1,17 +1,31 @@
 <div class="layout">
-  <aside class="sidebar">
-    <h2>Admin</h2>
+  <aside class="sidebar" [class.open]="isSidebarOpen">
+    <img class="sidebar-icon" src="urban-icon.png" alt="" />
     <nav>
-      <a routerLink="/admin" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
-        >Dashboard</a
+      <a
+        routerLink="/admin"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="onNavigate()"
       >
-      <a routerLink="/admin/cards" routerLinkActive="active">Cartões</a>
+        Dashboard
+      </a>
+
+      <a routerLink="/admin/cards" routerLinkActive="active" (click)="onNavigate()"> Cartões </a>
+
+      <a routerLink="/admin/users" routerLinkActive="active" (click)="onNavigate()"> Usuários </a>
     </nav>
   </aside>
+  <div class="overlay" *ngIf="isSidebarOpen" (click)="closeSidebar()"></div>
 
   <main class="content">
     <header class="header">
-      <span>Bem-vindo(a), {{ (user$ | async)?.nome }}!</span>
+      <button class="menu-btn" (click)="toggleSidebar()">☰</button>
+
+      <span
+        >Bem-vindo(a), <span class="username">{{ (user$ | async)?.nome }}!</span>
+      </span>
+
       <button (click)="logout()" class="logout-btn">Sair</button>
     </header>
     <section class="page">

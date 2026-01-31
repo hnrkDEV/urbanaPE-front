@@ -1,19 +1,68 @@
-<h1>Dashboard Admin</h1>
-<p>Bem-vindo, administrador</p>
+<div class="dashboard" @fadeIn>
+  <h1>Dashboard Admin</h1>
+  <p class="subtitle">Visão geral do sistema</p>
 
-<div class="cards">
-  <div class="card">
-    <span>Total de Usuários</span>
-    <strong>128</strong>
-  </div>
+  <ng-container *ngIf="dashboard$ | async as dashboard">
+    <div class="cards" @staggerCards>
+      <div class="card kpi">
+        <span>Total de Usuários</span>
+        <strong>{{ dashboard.totalUsers }}</strong>
+      </div>
 
-  <div class="card">
-    <span>Total de Cartões</span>
-    <strong>356</strong>
-  </div>
+      <div class="card kpi">
+        <span>Total de Cartões</span>
+        <strong>{{ dashboard.totalCards }}</strong>
+      </div>
 
-  <div class="card">
-    <span>Cartões Ativos</span>
-    <strong>289</strong>
-  </div>
+      <div class="card kpi success">
+        <span>Cartões Ativos</span>
+        <strong>{{ dashboard.activeCards }}</strong>
+      </div>
+
+      <div class="card kpi">
+        <span>Média / Usuário</span>
+        <strong>{{ dashboard.averageCardsPerUser }}</strong>
+      </div>
+
+      <div class="card kpi highlight" *ngIf="dashboard.topUser">
+        <span>Top Usuário</span>
+        <strong>
+          {{ dashboard.topUser.nome }}
+          <small>{{ dashboard.topUser.totalCards }} cartões</small>
+        </strong>
+      </div>
+    </div>
+
+    <div class="panel" @fadeIn>
+      <h2>Cartões por Usuário</h2>
+      <apx-chart
+        *ngIf="barChartOptions?.series"
+        [series]="barChartOptions.series"
+        [chart]="barChartOptions.chart!"
+        [xaxis]="barChartOptions.xaxis!"
+        [yaxis]="barChartOptions.yaxis!"
+        [grid]="barChartOptions.grid!"
+        [plotOptions]="barChartOptions.plotOptions!"
+        [dataLabels]="barChartOptions.dataLabels!"
+        [tooltip]="barChartOptions.tooltip!"
+        [colors]="barChartOptions.colors!"
+      ></apx-chart>
+    </div>
+
+    <div class="panel">
+      <h2>Últimos Cartões Criados</h2>
+
+      <ul class="list" *ngIf="latestCards$ | async as cards">
+        <li *ngFor="let card of cards">
+          <div>
+            <strong>{{ card.nome }}</strong>
+          </div>
+          <small>{{ card.tipoCartao }}</small>
+          <span class="status" [class.active]="card.status" [class.inactive]="!card.status">
+            {{ card.status ? 'Ativo' : 'Inativo' }}
+          </span>
+        </li>
+      </ul>
+    </div>
+  </ng-container>
 </div>

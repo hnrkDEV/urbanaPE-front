@@ -1,49 +1,68 @@
-<h1>Cartões</h1>
+<div class="admin-cards" @fadePage>
+  <header class="page-header">
+    <div>
+      <h1>Cartões</h1>
+      <p>Gerencie os cartões cadastrados no sistema</p>
+    </div>
 
-<ng-container *ngIf="cards$ | async as cards; else loading">
-  <table class="table" *ngIf="cards.length; else empty">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Nome</th>
-        <th>Nº Cartão</th>
-        <th>Tipo</th>
-        <th>Status</th>
-        <th>Ações</th>
-      </tr>
-    </thead>
+    <button class="btn refresh" (click)="reload()" [disabled]="actionLoading">Atualizar</button>
+  </header>
 
-    <tbody>
-      <tr *ngFor="let card of cards">
-        <td>{{ card.id }}</td>
-        <td>{{ card.nome }}</td>
-        <td>{{ card.numeroCartao }}</td>
-        <td>{{ card.tipoCartao }}</td>
-        <td>
-          <span [style.color]="card.status ? 'green' : 'red'">
-            {{ card.status ? 'Ativo' : 'Inativo' }}
-          </span>
-        </td>
-        <td>
-          <button class="btn" (click)="toggleCard(card)">
-            {{ card.status ? 'Desativar' : 'Ativar' }}
-          </button>
-
-          <button class="btn danger" (click)="deleteCard(card)">Excluir</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</ng-container>
-
-<ng-template #loading>
-  <div class="skeleton">
-    <div class="line"></div>
-    <div class="line"></div>
-    <div class="line"></div>
+  <div class="alert" *ngIf="error">
+    {{ error }}
   </div>
-</ng-template>
 
-<ng-template #empty>
-  <p>Nenhum cartão encontrado.</p>
-</ng-template>
+  <ng-container *ngIf="cards$ | async as cards; else loadingTpl">
+    <table class="table" *ngIf="cards.length; else emptyTpl" @listAnimation>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Nº Cartão</th>
+          <th>Tipo</th>
+          <th>Status</th>
+          <th class="actions-col">Ações</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let card of cards">
+          <td data-label="Nome">{{ card.nome }}</td>
+          <td data-label="Nº Cartão">{{ card.numeroCartao }}</td>
+          <td data-label="Tipo">{{ card.tipoCartao }}</td>
+
+          <td data-label="Status">
+            <span class="status" [class.active]="card.status" [class.inactive]="!card.status">
+              {{ card.status ? 'Ativo' : 'Inativo' }}
+            </span>
+          </td>
+
+          <td data-label="Ações">
+            <div class="actions">
+              <button class="btn ghost" (click)="toggleCard(card)" [disabled]="actionLoading">
+                {{ card.status ? 'Desativar' : 'Ativar' }}
+              </button>
+
+              <button class="btn danger" (click)="deleteCard(card)" [disabled]="actionLoading">
+                Excluir
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-container>
+
+  <ng-template #loadingTpl>
+    <div class="skeleton">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
+  </ng-template>
+
+  <ng-template #emptyTpl>
+    <div class="empty">
+      <p>Nenhum cartão encontrado.</p>
+    </div>
+  </ng-template>
+</div>

@@ -1,0 +1,66 @@
+<div class="admin-users" @fadePage>
+  <header class="page-header">
+    <div>
+      <h1>Usuários</h1>
+      <p>Gerencie os usuários cadastrados no sistema</p>
+    </div>
+
+    <button class="btn refresh" (click)="reload()" [disabled]="actionLoading">Atualizar</button>
+  </header>
+
+  <div class="alert" *ngIf="error">
+    {{ error }}
+  </div>
+
+  <ng-container *ngIf="users$ | async as users; else loadingTpl">
+    <table class="table" *ngIf="users.length; else emptyTpl" @listAnimation>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>Email</th>
+          <th>Perfil</th>
+          <th class="actions-col">Ações</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td data-label="ID">{{ user.id }}</td>
+          <td data-label="Nome">{{ user.nome }}</td>
+          <td data-label="Email">{{ user.email }}</td>
+
+          <td data-label="Perfil">
+            <span
+              class="role"
+              [class.admin]="user.role === 'ADMIN'"
+              [class.client]="user.role === 'CLIENT'"
+            >
+              {{ user.role }}
+            </span>
+          </td>
+
+          <td data-label="Ações">
+            <button class="btn danger" (click)="deleteUser(user)" [disabled]="actionLoading">
+              Remover
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-container>
+
+  <ng-template #loadingTpl>
+    <div class="skeleton">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
+  </ng-template>
+
+  <ng-template #emptyTpl>
+    <div class="empty">
+      <p>Nenhum usuário encontrado.</p>
+    </div>
+  </ng-template>
+</div>
