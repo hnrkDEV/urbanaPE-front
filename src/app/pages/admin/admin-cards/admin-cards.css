@@ -29,15 +29,6 @@
   margin-bottom: 1rem;
 }
 
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  overflow: hidden;
-}
-
 .table th {
   background: #f8fafc;
   color: #475569;
