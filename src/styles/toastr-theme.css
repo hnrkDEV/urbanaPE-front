@@ -32,6 +32,8 @@
   font-weight: 400 !important;
   font-size: 13px;
   color: #d1d5db !important;
+  gap: 8px;
+  line-height: 1.4;
 }
 
 .toast-close-button {
@@ -39,11 +41,11 @@
 }
 
 .toast-success {
-  border-left: 1px solid #4fd1b5 !important; /* verde urban */
+  border-left: 1px solid #4fd1b5 !important;
 }
 
 .toast-error {
-  border-left: 1px solid #ef4444 !important; /* vermelho suave */
+  border-left: 1px solid #ef4444 !important;
 }
 
 .toast-warning {
@@ -56,6 +58,14 @@
 
 .toast-container .ngx-toastr {
   animation: toastIn 0.25s ease-out;
+}
+
+.toast-success,
+.toast-error,
+.toast-info,
+.toast-warning {
+  background-image: none !important;
+  padding-left: 52px !important;
 }
 
 @keyframes toastIn {

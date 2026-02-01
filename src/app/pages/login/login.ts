@@ -49,7 +49,7 @@ export class Login {
         }
 
         const decoded = jwtDecode<JwtPayload>(token);
-        this.toastr.success('Login realizado com sucesso!', 'Bem-vindo');
+        this.toastr.success('Login realizado com sucesso!');
 
         if (decoded.role === 'ADMIN') {
           this.router.navigate(['/admin']);
