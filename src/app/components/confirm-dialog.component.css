@@ -1,0 +1,58 @@
+.dialog-clientCard {
+  padding: 1.5rem 1.75rem;
+  max-width: 360px;
+  background: #111111;
+  border-radius: 18px;
+  color: #e5e7eb;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+}
+
+.h2-clientCard {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: #f9fafb;
+}
+
+.p-clientCard {
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: #9ca3af;
+  margin-bottom: 1.4rem;
+}
+
+.actions-clientCard {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.6rem;
+}
+
+.actions-clientCard .btn {
+  padding: 0.45rem 0.95rem;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.actions-clientCard .btn.ghost {
+  background: #1f2933;
+  color: #e5e7eb;
+}
+
+.actions-clientCard .btn.ghost:hover {
+  background: #27303a;
+}
+
+.actions-clientCard .btn.danger {
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+}
+
+.actions-clientCard .btn.danger:hover {
+  background: rgba(239, 68, 68, 0.25);
+  box-shadow: 0 0 0 1px rgba(239, 68, 68, 0.35);
+  transform: translateY(-1px);
+}

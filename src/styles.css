@@ -105,6 +105,13 @@ body {
   overflow: hidden;
 }
 
+.txc-dialog-panel .mat-mdc-dialog-surface {
+  background: transparent !important;
+  padding: 0 !important;
+  border-radius: 18px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65);
+}
+
 @keyframes scaleIn {
   from {
     transform: scale(0.95);

@@ -1,0 +1,23 @@
+<div class="dialog-createClientCard">
+  <h2 class="h2-createClientCard">Criar cartão</h2>
+
+  <div class="field-createClientCard">
+    <label>Nome do cartão</label>
+    <input type="text" [(ngModel)]="nome" placeholder="Ex: Cartão Transporte" />
+  </div>
+
+  <div class="field-createClientCard">
+    <label>Tipo do cartão</label>
+    <select [(ngModel)]="tipoCartao">
+      <option value="">Selecione</option>
+      <option value="COMUM">Comum</option>
+      <option value="ESTUDANTE">Estudante</option>
+      <option value="TRABALHADOR">Trabalhador</option>
+    </select>
+  </div>
+
+  <div class="actions-createClientCard">
+    <button class="btn ghost" (click)="close()">Cancelar</button>
+    <button class="btn success" (click)="confirm()" [disabled]="!nome || !tipoCartao">Criar</button>
+  </div>
+</div>

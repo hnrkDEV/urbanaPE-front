@@ -1,19 +1,20 @@
 h1 {
   font-size: 1.6rem;
   font-weight: 600;
-  color: #e5e7eb;
+  color: rgb(89, 193, 169);
   margin-bottom: 0.25rem;
 }
 
 .subtitle {
-  color: #9ca3af;
+  color: #59c1a97a;
   margin-bottom: 1.5rem;
 }
 
 .cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1.25rem;
+  align-items: stretch;
 }
 
 .card {
@@ -25,9 +26,7 @@ h1 {
   flex-direction: column;
   gap: 0.9rem;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
-  width: 19rem;
 }
-
 .card:hover {
   transform: translateY(-3px);
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
@@ -37,6 +36,12 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.hint {
+  padding: 0;
+  margin: 0;
+  color: #9ca3af;
 }
 
 .type {
@@ -106,8 +111,65 @@ h1 {
   cursor: not-allowed;
 }
 
+.secondary-btn-client {
+  width: 100%;
+  margin-top: 0.4rem;
+
+  padding: 0.55rem 0.6rem;
+  border-radius: 10px;
+
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  color: #cbd5f5;
+  font-size: 0.8rem;
+  font-weight: 500;
+
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.secondary-btn-client:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+}
+
+.secondary-btn-client:active {
+  transform: translateY(0);
+}
+
+.secondary-btn-client:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
 .loading,
 .empty {
   color: #9ca3af;
   margin-top: 1.5rem;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.btn.primary {
+  background: #59c1a9;
+  border: none;
+  border-radius: 10px;
+  padding: 0.55rem 0.9rem;
+  color: #022c22;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn.primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0px 10px rgba(89, 193, 169, 0.35);
 }

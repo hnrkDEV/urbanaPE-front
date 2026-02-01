@@ -2,6 +2,7 @@ import { animate, query, stagger, style, transition, trigger } from '@angular/an
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 import { catchError, Observable, of, startWith, Subject, switchMap } from 'rxjs';
 import { ConfirmDialogComponent } from '../../../components/confirm-dialog.component';
 import { AdminCard, AdminCardService } from '../../../services/admin-card.service';
@@ -40,7 +41,11 @@ export class AdminCards implements OnInit {
   actionLoading = false;
   error = '';
 
-  constructor(private adminCardService: AdminCardService, private dialog: MatDialog) {}
+  constructor(
+    private adminCardService: AdminCardService,
+    private dialog: MatDialog,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.cards$ = this.refresh$.pipe(
@@ -82,7 +87,7 @@ export class AdminCards implements OnInit {
         message: `Deseja realmente excluir o cartão "${card.nome}"?`,
         confirmText: 'Excluir',
       },
-      panelClass: 'confirm-dialog',
+      panelClass: 'txc-dialog-panel',
       disableClose: true,
     });
 
@@ -96,9 +101,12 @@ export class AdminCards implements OnInit {
           this.actionLoading = false;
           this.reload();
         },
-        error: () => {
-          this.error = 'Erro ao excluir o cartão.';
+        error: (err) => {
           this.actionLoading = false;
+
+          const message = err?.error?.message || 'Não foi possível excluir o cartão.';
+
+          this.toastr.error(message);
         },
       });
     });

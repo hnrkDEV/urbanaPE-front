@@ -83,7 +83,7 @@ export class AdminUsers implements OnInit {
         message: `Deseja realmente remover o usuário "${user.nome}"?`,
         confirmText: 'Excluir',
       },
-      panelClass: 'confirm-dialog',
+      panelClass: 'txc-dialog-panel',
       disableClose: true,
     });
 

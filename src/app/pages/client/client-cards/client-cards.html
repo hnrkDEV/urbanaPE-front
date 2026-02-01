@@ -1,5 +1,11 @@
-<h1>Meus Cartões</h1>
-<p class="subtitle">Gerencie seus cartões e créditos</p>
+<div class="page-header">
+  <div>
+    <h1>Meus Cartões</h1>
+    <p class="subtitle">Gerencie seus cartões e créditos</p>
+  </div>
+
+  <button class="btn primary" (click)="createCard()">+ Criar cartão</button>
+</div>
 
 <div class="cards-grid" *ngIf="cards$ | async as cards; else loading">
   <div class="card" *ngFor="let card of cards">
@@ -27,11 +33,25 @@
 
     <button
       class="credit-btn"
+      [disabled]="!podeCreditar(card)"
+      [title]="motivoBloqueio(card) || 'Adicionar crédito'"
       (click)="credit(card)"
-      [disabled]="!card.status || card.tipoCartao === 'ESTUDANTE'"
     >
       + Adicionar crédito
     </button>
+    <button
+      class="secondary-btn-client"
+      (click)="openTransactions(card)"
+      [disabled]="!card.hasTransactions"
+    >
+      Ver extrato
+    </button>
+    <p class="hint" *ngIf="card.tipoCartao === 'ESTUDANTE'">
+      Crédito realizado apenas pela administração
+    </p>
+    <p class="hint" *ngIf="card.tipoCartao === 'TRABALHADOR'">
+      Crédito do cartão trabalhador é realizado automaticamente
+    </p>
   </div>
 
   <div *ngIf="!cards.length" class="empty">Nenhum cartão encontrado.</div>

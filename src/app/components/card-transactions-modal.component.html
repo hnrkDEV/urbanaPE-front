@@ -1,0 +1,25 @@
+<div class="txc-modal">
+  <h2 class="txc-title">Extrato do cartão</h2>
+
+  <div *ngIf="transactions$ | async as txs; else loading">
+    <div *ngFor="let tx of txs" class="txc-item">
+      <div class="txc-left">
+        <span class="txc-type">Crédito</span>
+        <span class="txc-date">
+          {{ tx.createdAt | date : 'dd/MM/yyyy HH:mm' }}
+        </span>
+      </div>
+
+      <div class="txc-right">
+        <span class="txc-amount">+ R$ {{ tx.valor | number : '1.2-2' }}</span>
+        <span class="txc-balance"> Saldo: R$ {{ tx.saldoAtual | number : '1.2-2' }} </span>
+      </div>
+    </div>
+
+    <div *ngIf="!txs.length" class="txc-empty">Nenhuma movimentação encontrada.</div>
+  </div>
+
+  <ng-template #loading>
+    <div class="txc-loading">Carregando extrato...</div>
+  </ng-template>
+</div>

@@ -1,0 +1,29 @@
+<div class="dialog-clientCard">
+  <h2 class="h2-clientCard">Adicionar crédito</h2>
+
+  <p class="info-clientCard">
+    Saldo atual:
+    <strong>R$ {{ data.saldo | number : '1.2-2' }}</strong
+    ><br />
+    Limite:
+    <strong>R$ {{ data.limite | number : '1.2-2' }}</strong>
+  </p>
+
+  <div class="field-clientCard">
+    <label>Valor</label>
+    <input
+      type="number"
+      class="input-clientCard"
+      [(ngModel)]="valor"
+      min="1"
+      placeholder="Digite o valor"
+    />
+  </div>
+
+  <div class="actions-clientCard">
+    <button class="btn ghost" (click)="close()">Cancelar</button>
+    <button class="btn success" (click)="confirm()" [disabled]="!valor || valor <= 0">
+      Confirmar
+    </button>
+  </div>
+</div>

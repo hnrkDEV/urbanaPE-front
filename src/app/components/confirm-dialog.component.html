@@ -1,0 +1,11 @@
+<div class="dialog-clientCard">
+  <h2 class="h2-clientCard">{{ data.title }}</h2>
+  <p class="p-clientCard">{{ data.message }}</p>
+
+  <div class="actions-clientCard">
+    <button class="btn ghost" (click)="close(false)">Cancelar</button>
+    <button class="btn danger" (click)="close(true)">
+      {{ data.confirmText || 'Confirmar' }}
+    </button>
+  </div>
+</div>
