@@ -4,6 +4,10 @@
   background: rgb(36, 36, 36);
 }
 
+.container.reverse {
+  flex-direction: row-reverse;
+}
+
 .login-img {
   position: relative;
   width: 50%;

@@ -1,7 +1,7 @@
 <div class="admin-users" @fadePage>
   <header class="page-header">
     <div>
-      <h1>Usuários</h1>
+      <h1>USUÁRIOS</h1>
       <p>Gerencie os usuários cadastrados no sistema</p>
     </div>
 
@@ -41,9 +41,15 @@
           </td>
 
           <td data-label="Ações">
-            <button class="btn danger" (click)="deleteUser(user)" [disabled]="actionLoading">
-              Remover
-            </button>
+            <div class="actions">
+              <button class="btn ghost" (click)="editUser(user)" [disabled]="actionLoading">
+                Editar
+              </button>
+
+              <button class="btn danger" (click)="deleteUser(user)" [disabled]="actionLoading">
+                Remover
+              </button>
+            </div>
           </td>
         </tr>
       </tbody>

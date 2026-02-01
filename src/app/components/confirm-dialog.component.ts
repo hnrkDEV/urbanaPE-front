@@ -7,11 +7,11 @@ import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/materia
   selector: 'app-confirm-dialog',
   imports: [CommonModule, MatDialogModule],
   template: `
-    <div class="dialog">
-      <h2>{{ data.title }}</h2>
-      <p>{{ data.message }}</p>
+    <div class="dialog-clientCard">
+      <h2 class="h2-clientCard">{{ data.title }}</h2>
+      <p class="p-clientCard">{{ data.message }}</p>
 
-      <div class="actions">
+      <div class="actions-clientCard">
         <button class="btn ghost" (click)="close(false)">Cancelar</button>
         <button class="btn danger" (click)="close(true)">
           {{ data.confirmText || 'Confirmar' }}
@@ -21,24 +21,24 @@ import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/materia
   `,
   styles: [
     `
-      .dialog {
+      .dialog-clientCard {
         padding: 1.5rem;
         max-width: 360px;
       }
 
-      h2 {
+      h2-clientCard {
         font-size: 1.1rem;
         margin-bottom: 0.5rem;
         color: #0f172a;
       }
 
-      p {
+      p-clientCard {
         font-size: 0.9rem;
         color: #475569;
         margin-bottom: 1.25rem;
       }
 
-      .actions {
+      .actions-clientCard {
         display: flex;
         justify-content: flex-end;
         gap: 0.5rem;

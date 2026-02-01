@@ -1,4 +1,7 @@
 @import '@angular/material/prebuilt-themes/azure-blue.css';
+@import './styles/toastr-theme.css';
+@import './app/components/edit-user-dialog.component.css';
+
 html {
   background-color: rgb(229, 231, 235);
 }
@@ -87,6 +90,19 @@ body {
 
 .refresh {
   background-color: #1a1a1a !important;
+}
+
+.urban-dialog .mat-mdc-dialog-container {
+  padding: 0 !important;
+  border-radius: 18px !important;
+  background: transparent !important;
+}
+
+.urban-dialog .mdc-dialog__surface {
+  background: #2c2c2c !important;
+  border-radius: 18px !important;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.55) !important;
+  overflow: hidden;
 }
 
 @keyframes scaleIn {

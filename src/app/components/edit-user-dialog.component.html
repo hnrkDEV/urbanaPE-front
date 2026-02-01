@@ -1,0 +1,32 @@
+<div class="dialog">
+  <h2>Editar usuário</h2>
+
+  <form>
+    <div class="field-modal">
+      <label>Nome</label>
+      <input type="text" [(ngModel)]="nome" name="nome" />
+    </div>
+
+    <div class="field-modal">
+      <label>Email</label>
+      <input type="email" [(ngModel)]="email" name="email" />
+    </div>
+
+    <div class="field-modal">
+      <label>Perfil</label>
+      <select [(ngModel)]="role" name="role">
+        <option value="CLIENT">CLIENT</option>
+        <option value="ADMIN">ADMIN</option>
+      </select>
+    </div>
+
+    <p class="error" *ngIf="error">{{ error }}</p>
+
+    <div class="actions-modal">
+      <button type="button" class="btn-modal ghost" (click)="cancel()">Cancelar</button>
+      <button type="button" class="btn-modal primary" (click)="save()" [disabled]="loading">
+        {{ loading ? 'Salvando...' : 'Salvar' }}
+      </button>
+    </div>
+  </form>
+</div>

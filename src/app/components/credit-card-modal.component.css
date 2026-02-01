@@ -1,0 +1,92 @@
+.dialog-clientCard {
+  padding: 1.5rem;
+  width: 320px;
+  background: #1f2937;
+  border: none;
+  color: #e5e7eb;
+}
+
+.h2-clientCard {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #f9fafb;
+}
+
+.info-clientCard {
+  font-size: 0.85rem;
+  color: #9ca3af;
+  margin-bottom: 1.25rem;
+  line-height: 1.4;
+}
+
+.info-clientCard strong {
+  color: #22c55e;
+}
+
+.field-clientCard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 1.25rem;
+}
+
+.field-clientCard label {
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+.input-clientCard {
+  padding: 0.65rem 0.7rem;
+  border-radius: 10px;
+  border: 1px solid #374151;
+  background: #111827;
+  color: #f9fafb;
+  font-size: 0.85rem;
+  outline: none;
+}
+
+.input-clientCard:focus {
+  border-color: #22c55e;
+  box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.35);
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.actions-clientCard {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.btn {
+  padding: 0.45rem 0.85rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  border: none;
+  cursor: pointer;
+}
+
+.btn.ghost {
+  background: #374151;
+  color: #e5e7eb;
+}
+
+.btn.success {
+  background: #22c55e;
+  color: #022c22;
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

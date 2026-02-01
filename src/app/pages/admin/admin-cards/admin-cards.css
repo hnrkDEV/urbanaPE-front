@@ -12,7 +12,7 @@
 .page-header h1 {
   font-size: 1.6rem;
   font-weight: 600;
-  color: #ffffff;
+  color: rgb(89, 193, 169);
 }
 
 .page-header p {
@@ -36,7 +36,7 @@
 }
 
 .actions-col {
-  text-align: right;
+  text-align: start;
 }
 
 .status {
@@ -81,17 +81,18 @@
 }
 
 .btn.ghost {
-  background: #e0e7ff;
-  color: #1e3a8a;
+  background: #1a1a1a !important;
+  color: #c4c9d1 !important;
 }
 
 .btn.ghost:hover:not(:disabled) {
-  background: #c7d2fe;
+  background: #c4c9d1 !important;
+  color: #1a1a1a !important;
 }
 
 .btn.danger {
-  background: #fee2e2;
-  color: #991b1b;
+  background-color: rgba(242, 99, 99, 0.184) !important;
+  color: #e97676 !important;
 }
 
 .btn.danger:hover:not(:disabled) {
@@ -99,7 +100,6 @@
 }
 
 .btn.refresh {
-  background: #0f172a;
   color: #fff;
 }
 

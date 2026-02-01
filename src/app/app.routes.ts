@@ -5,6 +5,7 @@ import { AdminCards } from './pages/admin/admin-cards/admin-cards';
 import { AdminHome } from './pages/admin/admin-home/admin-home';
 import { AdminLayout } from './pages/admin/admin-layout/admin-layout';
 import { AdminUsers } from './pages/admin/admin-users/admin-users';
+import { ClientCards } from './pages/client/client-cards/client-cards';
 import { ClientHome } from './pages/client/client-home/client-home';
 import { ClientLayout } from './pages/client/client-layout/client-layout';
 import { Login } from './pages/login/login';
@@ -29,7 +30,13 @@ export const routes: Routes = [
     path: 'client',
     component: ClientLayout,
     canActivate: [authGuard, roleGuard('CLIENT')],
-    children: [{ path: '', component: ClientHome }],
+    children: [
+      { path: '', component: ClientHome },
+      {
+        path: 'cards',
+        component: ClientCards,
+      },
+    ],
   },
 
   { path: '', redirectTo: 'login', pathMatch: 'full' },

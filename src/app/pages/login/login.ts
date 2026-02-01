@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../auth/auth.service';
 
 import { animate, style, transition, trigger } from '@angular/animations';
@@ -31,7 +32,11 @@ export class Login {
   senha = '';
   error = '';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private toastr: ToastrService
+  ) {}
 
   login() {
     this.authService.login(this.email, this.senha).subscribe({
@@ -39,11 +44,12 @@ export class Login {
         const token = localStorage.getItem('token');
 
         if (!token) {
-          this.error = 'Token não encontrado';
+          this.toastr.error('Token não encontrado', 'Erro');
           return;
         }
 
         const decoded = jwtDecode<JwtPayload>(token);
+        this.toastr.success('Login realizado com sucesso!', 'Bem-vindo');
 
         if (decoded.role === 'ADMIN') {
           this.router.navigate(['/admin']);
@@ -52,7 +58,13 @@ export class Login {
         }
       },
       error: (err) => {
-        this.error = 'Erro ao autenticar';
+        if (err.status === 401) {
+          this.toastr.error(err.error?.message || 'Credenciais inválidas', 'Falha no login');
+        } else if (err.status === 403) {
+          this.toastr.error('Acesso não autorizado', 'Permissão');
+        } else {
+          this.toastr.error('Erro ao autenticar. Tente novamente.', 'Erro');
+        }
       },
     });
   }

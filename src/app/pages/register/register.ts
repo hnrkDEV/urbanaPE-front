@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { take } from 'rxjs/operators';
 import { AuthService } from '../../auth/auth.service';
 
 @Component({
@@ -24,23 +26,31 @@ export class Register {
   nome = '';
   email = '';
   senha = '';
-  error = '';
   loading = false;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private toastr: ToastrService
+  ) {}
 
   register() {
-    this.error = '';
-    this.loading = true;
-
-    this.authService.register(this.nome, this.email, this.senha).subscribe({
-      next: () => {
-        this.router.navigate(['/login']);
-      },
-      error: (err) => {
-        this.error = err?.error?.message || 'Erro ao registrar usuário';
-        this.loading = false;
-      },
-    });
+    this.authService
+      .register(this.nome, this.email, this.senha)
+      .pipe(take(1))
+      .subscribe({
+        next: () => {
+          this.loading = false;
+          this.toastr.success('Registro realizado com sucesso!', 'Bem-vindo');
+          this.router.navigate(['/login']);
+        },
+        error: (err) => {
+          this.loading = false;
+          this.toastr.error(
+            err.error?.message || 'Erro ao registrar. Tente novamente.',
+            'Falha no Registro'
+          );
+        },
+      });
   }
 }

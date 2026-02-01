@@ -1,16 +1,34 @@
 <div class="layout">
-  <aside class="sidebar">
-    <h2>Cliente</h2>
+  <aside class="sidebar" [class.open]="isSidebarOpen">
+    <img class="sidebar-icon" src="urban-icon.png" alt="" />
 
     <nav>
-      <a routerLink="/client">Início</a>
-      <a routerLink="/client/cards">Meus Cartões</a>
+      <a
+        routerLink="/client"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="onNavigate()"
+      >
+        Dashboard
+      </a>
+
+      <a routerLink="/client/cards" routerLinkActive="active" (click)="onNavigate()">
+        Meus Cartões
+      </a>
     </nav>
   </aside>
 
+  <div class="overlay" *ngIf="isSidebarOpen" (click)="closeSidebar()"></div>
+
   <main class="content">
     <header class="header">
-      <span>Área do Cliente</span>
+      <button class="menu-btn" (click)="toggleSidebar()">☰</button>
+
+      <span>
+        Olá, <span class="username">{{ (user$ | async)?.nome }}</span>
+      </span>
+
+      <button (click)="logout()" class="logout-btn">Sair</button>
     </header>
 
     <section class="page">

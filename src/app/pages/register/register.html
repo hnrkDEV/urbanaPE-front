@@ -1,37 +1,37 @@
-<div class="auth-wrapper">
-  <div class="auth-card" @fadeIn>
-    <div class="logo">
-      <img src="urban-icon.png" class="logo-icon" />
+<div class="container reverse">
+  <div class="login-img"></div>
+
+  <div class="auth-wrapper">
+    <div class="auth-card" @fadeIn>
+      <div class="logo">
+        <img src="urban-icon.png" class="logo-icon" />
+      </div>
+
+      <h2>Registre-se</h2>
+      <p class="subtitle">Leva menos de um minuto</p>
+
+      <form (ngSubmit)="register()">
+        <div class="field">
+          <input type="text" placeholder=" " [(ngModel)]="nome" name="nome" required />
+          <label>Nome</label>
+        </div>
+
+        <div class="field">
+          <input type="email" placeholder=" " [(ngModel)]="email" name="email" required />
+          <label>Email</label>
+        </div>
+
+        <div class="field">
+          <input type="password" placeholder=" " [(ngModel)]="senha" name="senha" required />
+          <label>Senha</label>
+        </div>
+
+        <button type="submit" class="primary" [disabled]="loading">Criar conta</button>
+      </form>
+
+      <div class="divider"></div>
+
+      <button class="link" routerLink="/login">Já tenho conta</button>
     </div>
-
-    <h2>Registre-se</h2>
-    <p class="subtitle">Leva menos de um minuto</p>
-
-    <form (ngSubmit)="register()">
-      <div class="field">
-        <input type="text" placeholder=" " [(ngModel)]="nome" name="nome" required />
-        <label>Nome</label>
-      </div>
-
-      <div class="field">
-        <input type="email" placeholder=" " [(ngModel)]="email" name="email" required />
-        <label>Email</label>
-      </div>
-
-      <div class="field">
-        <input type="password" placeholder=" " [(ngModel)]="senha" name="senha" required />
-        <label>Senha</label>
-      </div>
-
-      <button type="submit" class="primary" [disabled]="loading">
-        {{ loading ? 'Criando conta...' : 'Criar conta' }}
-      </button>
-    </form>
-
-    <div class="divider"></div>
-
-    <button class="link" routerLink="/login">Já tenho conta</button>
-
-    <p class="error" *ngIf="error">{{ error }}</p>
   </div>
 </div>

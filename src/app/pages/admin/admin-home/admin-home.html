@@ -1,5 +1,5 @@
 <div class="dashboard" @fadeIn>
-  <h1>Dashboard Admin</h1>
+  <h1>DASHBOARD ADMINISTRATIVO</h1>
   <p class="subtitle">Visão geral do sistema</p>
 
   <ng-container *ngIf="dashboard$ | async as dashboard">
@@ -26,10 +26,11 @@
 
       <div class="card kpi highlight" *ngIf="dashboard.topUser">
         <span>Top Usuário</span>
-        <strong>
-          {{ dashboard.topUser.nome }}
-          <small>{{ dashboard.topUser.totalCards }} cartões</small>
-        </strong>
+
+        <div class="top-user">
+          <strong class="name">{{ dashboard.topUser.nome }}</strong>
+          <small class="meta">{{ dashboard.topUser.totalCards }} cartões</small>
+        </div>
       </div>
     </div>
 

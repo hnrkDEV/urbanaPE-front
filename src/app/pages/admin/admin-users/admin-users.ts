@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { catchError, Observable, of, startWith, Subject, switchMap } from 'rxjs';
 import { ConfirmDialogComponent } from '../../../components/confirm-dialog.component';
+import { EditUserDialogComponent } from '../../../components/edit-user-dialog.component';
 import { UserInterface, UserService } from '../../../services/user.service';
 
 @Component({
@@ -54,6 +55,21 @@ export class AdminUsers implements OnInit {
         )
       )
     );
+  }
+
+  editUser(user: UserInterface) {
+    const dialogRef = this.dialog.open(EditUserDialogComponent, {
+      data: user,
+      width: '420px',
+      disableClose: true,
+      panelClass: 'urban-dialog',
+    });
+
+    dialogRef.afterClosed().subscribe((updated: boolean) => {
+      if (updated) {
+        this.reload();
+      }
+    });
   }
 
   reload() {

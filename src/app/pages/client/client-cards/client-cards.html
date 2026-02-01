@@ -1,17 +1,42 @@
 <h1>Meus Cartões</h1>
+<p class="subtitle">Gerencie seus cartões e créditos</p>
 
-<ng-container *ngIf="cards$ | async as cards; else loading">
-  <table class="table" *ngIf="cards.length; else empty">
-    <tr *ngFor="let card of cards">
-      <td>{{ card.numeroCartao }}</td>
-      <td>{{ card.tipoCartao }}</td>
-      <td>{{ card.status ? 'Ativo' : 'Inativo' }}</td>
-      <td>
-        <button (click)="toggle(card)">Toggle</button>
-      </td>
-    </tr>
-  </table>
-</ng-container>
+<div class="cards-grid" *ngIf="cards$ | async as cards; else loading">
+  <div class="card" *ngFor="let card of cards">
+    <div class="card-header">
+      <span class="type">{{ card.tipoCartao }}</span>
 
-<ng-template #loading>Carregando...</ng-template>
-<ng-template #empty>Nenhum cartão.</ng-template>
+      <span class="status" [class.active]="card.status" [class.inactive]="!card.status">
+        {{ card.status ? 'Ativo' : 'Inativo' }}
+      </span>
+    </div>
+
+    <div class="number">Nº {{ card.numeroCartao }}</div>
+
+    <div class="card-body">
+      <div class="balance">
+        <span>Saldo</span>
+        <strong>R$ {{ card.saldo | number : '1.2-2' }}</strong>
+      </div>
+
+      <div class="limit">
+        <span>Limite</span>
+        <strong>R$ {{ card.limite | number : '1.2-2' }}</strong>
+      </div>
+    </div>
+
+    <button
+      class="credit-btn"
+      (click)="credit(card)"
+      [disabled]="!card.status || card.tipoCartao === 'ESTUDANTE'"
+    >
+      + Adicionar crédito
+    </button>
+  </div>
+
+  <div *ngIf="!cards.length" class="empty">Nenhum cartão encontrado.</div>
+</div>
+
+<ng-template #loading>
+  <div class="loading">Carregando cartões...</div>
+</ng-template>
