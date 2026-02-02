@@ -1,59 +1,110 @@
-# UrbanaPEFront
+# UrbanaPE Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.2.
+Frontend do projeto **UrbanaPE**, desenvolvido com **Angular**, como parte de um desafio técnico, seguindo boas práticas de organização, componentização e estrutura de aplicações SPA.
 
-## Development server
+O objetivo do projeto é servir como base para uma aplicação web moderna, escalável e de fácil manutenção.
 
-To start a local development server, run:
+---
 
-```bash
-ng serve
-```
+## Visão Geral
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+O **UrbanaPE Frontend** é uma aplicação web construída com **Angular**, preparada para:
 
-## Code scaffolding
+- Navegação entre páginas (SPA)
+- Organização modular
+- Separação clara de responsabilidades
+- Integração futura com APIs REST
+- Evolução para aplicações de médio e grande porte
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+---
 
-```bash
-ng generate component component-name
-```
+## Tecnologias Utilizadas
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- **Angular**
+- **TypeScript**
+- **HTML5**
+- **CSS3**
+- **Node.js**
+- **Angular CLI**
 
-```bash
-ng generate --help
-```
+---
 
-## Building
+## Estrutura do Projeto
 
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+A estrutura do projeto segue o padrão recomendado pelo Angular:
 
 ```bash
-ng test
+├── src
+│   ├── app
+│   │   ├── auth
+│   │   │   ├── auth.guard.ts
+│   │   │   ├── auth.service.ts
+│   │   │   └── role.guard.ts
+│   │   ├── interceptors
+│   │   │   └── jwt.interceptor.ts
+│   │   ├── models
+│   │   │   └── user.model.ts
+│   │   ├── pages
+│   │   │   ├── admin
+│   │   │   │   ├── admin-cards
+│   │   │   │   ├── admin-home
+│   │   │   │   └── admin-layout
+│   │   │   ├── client
+│   │   │   │   ├── client-cards
+│   │   │   │   ├── client-home
+│   │   │   │   └── client-layout
+│   │   │   ├── login
+│   │   │   └── register
+│   │   ├── services
+│   │   │   ├── admin-card.service.ts
+│   │   │   ├── client-card.service.ts
+│   │   │   └── user.service.ts
+│   │   ├── app.config.ts
+│   │   ├── app.css
+│   │   ├── app.html
+│   │   ├── app.routes.ts
+│   │   ├── app.spec.ts
+│   │   └── app.ts
+│   ├── environments
+│   │   ├── environment.prod.ts
+│   │   └── environment.ts
+│   ├── index.html
+│   ├── main.ts
+│   └── styles.css
 ```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
+### Como executar o projeto
+- Pré-requisitos
+  Certifique-se de ter instalado:
+  - Node.js (versão LTS recomendada)
+  - Angular CLI
+  Para instalar o Angular CLI:
 ```bash
-ng e2e
+npm install -g @angular/cli
 ```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+  Instalação das dependências:
+  - Dentro da pasta do projeto, execute:
+```bash
+npm i ou npm install
+```
+Executar a Aplicação:
+```bash
+ng serve ou npm run start
+```
+A aplicação estará disponível em:
+```bash
+http://localhost:4200
+```
+### Rotas (Planejamento)
+O projeto já está preparado para trabalhar com rotas utilizando o Angular Router, permitindo expansão para páginas como:
+ - Home
+ - Login
+ - Cadastro
+ - Dashboard
+ - Administração
+   
+### Boas Práticas Aplicadas
+ - Componentização
+ - Organização por domínio (pages, components, services)
+ - Separação de lógica e visual
+ - Código tipado com TypeScript
+ - Estrutura escalável
