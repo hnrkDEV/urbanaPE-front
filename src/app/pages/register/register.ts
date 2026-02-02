@@ -35,17 +35,32 @@ export class Register {
   ) {}
 
   register() {
+    this.loading = true;
+
+    const loadingToast = this.toastr.info(
+      'Registrando sua conta... Isso pode levar alguns segundos.',
+      'Criando conta',
+      {
+        disableTimeOut: true,
+        closeButton: false,
+      }
+    );
+
     this.authService
       .register(this.nome, this.email, this.senha)
       .pipe(take(1))
       .subscribe({
         next: () => {
           this.loading = false;
+          this.toastr.clear(loadingToast?.toastId);
+
           this.toastr.success('Registro realizado com sucesso!', 'Bem-vindo');
           this.router.navigate(['/login']);
         },
         error: (err) => {
           this.loading = false;
+          this.toastr.clear(loadingToast?.toastId);
+
           this.toastr.error(
             err.error?.message || 'Erro ao registrar. Tente novamente.',
             'Falha no Registro'

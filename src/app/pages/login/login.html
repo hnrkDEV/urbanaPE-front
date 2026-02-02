@@ -19,7 +19,9 @@
           <label>Senha</label>
         </div>
 
-        <button type="submit" class="primary">Entrar</button>
+        <button type="submit" [disabled]="loading">
+          {{ loading ? 'Entrando...' : 'Entrar' }}
+        </button>
       </form>
 
       <div class="divider"></div>

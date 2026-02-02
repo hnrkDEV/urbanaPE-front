@@ -26,7 +26,9 @@
           <label>Senha</label>
         </div>
 
-        <button type="submit" class="primary" [disabled]="loading">Criar conta</button>
+        <button type="submit" [disabled]="loading">
+          {{ loading ? 'Criando conta...' : 'Registrar' }}
+        </button>
       </form>
 
       <div class="divider"></div>

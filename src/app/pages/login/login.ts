@@ -39,17 +39,27 @@ export class Login {
   ) {}
 
   login() {
+    const loadingToast = this.toastr.info(
+      'Fazendo login... Isso pode levar alguns segundos.',
+      'Aguarde',
+      {
+        disableTimeOut: true,
+        closeButton: false,
+      }
+    );
+
     this.authService.login(this.email, this.senha).subscribe({
       next: () => {
-        const token = localStorage.getItem('token');
+        this.toastr.clear(loadingToast?.toastId);
 
+        const token = localStorage.getItem('token');
         if (!token) {
           this.toastr.error('Token não encontrado', 'Erro');
           return;
         }
 
         const decoded = jwtDecode<JwtPayload>(token);
-        this.toastr.success('Login realizado com sucesso!');
+        this.toastr.success('Login realizado com sucesso!', 'Sucesso');
 
         if (decoded.role === 'ADMIN') {
           this.router.navigate(['/admin']);
@@ -58,12 +68,14 @@ export class Login {
         }
       },
       error: (err) => {
+        this.toastr.clear(loadingToast?.toastId);
+
         if (err.status === 401) {
           this.toastr.error(err.error?.message || 'Credenciais inválidas', 'Falha no login');
         } else if (err.status === 403) {
           this.toastr.error('Acesso não autorizado', 'Permissão');
         } else {
-          this.toastr.error('Erro ao autenticar. Tente novamente.', 'Erro');
+          this.toastr.error('Servidor iniciando… tente novamente em alguns segundos', 'Erro');
         }
       },
     });
