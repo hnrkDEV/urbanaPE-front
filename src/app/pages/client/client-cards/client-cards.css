@@ -1,12 +1,12 @@
 h1 {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   font-weight: 600;
-  color: rgb(89, 193, 169);
+  color: #ffffff;
   margin-bottom: 0.25rem;
 }
 
 .subtitle {
-  color: #59c1a97a;
+  color: #9292927a;
   margin-bottom: 1.5rem;
 }
 
@@ -147,7 +147,6 @@ h1 {
 .loading,
 .empty {
   color: #9ca3af;
-  margin-top: 1.5rem;
 }
 
 .page-header {

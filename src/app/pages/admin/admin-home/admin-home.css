@@ -6,11 +6,11 @@
 .dashboard h1 {
   font-size: 1.8rem;
   font-weight: 600;
-  color: rgb(89, 193, 169);
+  color: #ffffff;
 }
 
 .subtitle {
-  color: #59c1a97a;
+  color: #b6b6b67a;
   margin-bottom: 1.75rem;
 }
 
@@ -94,11 +94,23 @@
 }
 
 .list li {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto auto;
   align-items: center;
-  justify-content: space-between;
   padding: 0.8rem 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  column-gap: 3rem;
+}
+.col.name {
+  overflow: hidden;
+  width: fit-content;
+}
+
+.col.type {
+  justify-self: center;
+}
+.col.status-col {
+  justify-self: end;
 }
 
 .list li strong {
@@ -106,9 +118,11 @@
   color: #f9fafb;
 }
 
-.list li small {
-  font-size: 0.75rem;
-  color: #9ca3af;
+.col.type small {
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #59c1a9;
 }
 
 .status {
@@ -168,4 +182,15 @@
   color: #59c1a9;
   font-size: 0.9rem;
   opacity: 0.6;
+}
+
+@media (max-width: 640px) {
+  .list li {
+    grid-template-columns: 1fr;
+    row-gap: 0.4rem;
+  }
+
+  .col.status-col {
+    justify-content: flex-start;
+  }
 }

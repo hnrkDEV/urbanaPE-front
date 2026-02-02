@@ -1,5 +1,5 @@
 <div class="dashboard" @fadeIn>
-  <h1>DASHBOARD ADMINISTRATIVO</h1>
+  <h1>DASHBOARD ADMIN</h1>
   <p class="subtitle">Visão geral do sistema</p>
 
   <ng-container *ngIf="dashboard$ | async as dashboard">
@@ -55,13 +55,19 @@
 
       <ul class="list" *ngIf="latestCards$ | async as cards">
         <li *ngFor="let card of cards">
-          <div>
+          <div class="col name">
             <strong>{{ card.nome }}</strong>
           </div>
-          <small>{{ card.tipoCartao }}</small>
-          <span class="status" [class.active]="card.status" [class.inactive]="!card.status">
-            {{ card.status ? 'Ativo' : 'Inativo' }}
-          </span>
+
+          <div class="col type">
+            <small>{{ card.tipoCartao }}</small>
+          </div>
+
+          <div class="col status-col">
+            <span class="status" [class.active]="card.status" [class.inactive]="!card.status">
+              {{ card.status ? 'Ativo' : 'Inativo' }}
+            </span>
+          </div>
         </li>
       </ul>
     </div>

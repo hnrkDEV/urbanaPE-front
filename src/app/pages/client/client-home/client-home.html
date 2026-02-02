@@ -1,2 +1,76 @@
-<h1>Área do Cliente</h1>
-<p>Bem-vindo!</p>
+<ng-container *ngIf="dashboard$ | async as dashboard">
+  <div *ngIf="dashboard.totalCards > 0; else emptyState">
+    <h1>Área do Cliente</h1>
+    <p class="subtitle">Resumo da sua conta</p>
+
+    <div class="cards">
+      <div class="card kpi">
+        <span>Meus cartões</span>
+        <strong>{{ dashboard.totalCards }}</strong>
+      </div>
+
+      <div class="card kpi success">
+        <span>Cartões ativos</span>
+        <strong>{{ dashboard.activeCards }}</strong>
+      </div>
+
+      <div class="card kpi">
+        <span>Tipos de cartão</span>
+        <strong>{{ dashboard.cardTypes.length }}</strong>
+        <small>{{ dashboard.cardTypes.join(' • ') }}</small>
+      </div>
+
+      <div class="card kpi">
+        <span>Situação da conta</span>
+        <strong>
+          {{ dashboard.activeCards > 0 ? 'Ativa' : 'Sem cartões ativos' }}
+        </strong>
+      </div>
+    </div>
+
+    <div class="panel activity">
+      <h2>Atividade recente</h2>
+
+      <p *ngIf="dashboard.hasActivity; else noActivity">
+        <span class="activity-icon">●</span>
+        Você possui movimentações recentes em seus cartões.
+      </p>
+
+      <ng-template #noActivity>
+        <p class="muted">
+          <span class="activity-icon idle">●</span>
+          Nenhuma movimentação recente.
+        </p>
+      </ng-template>
+    </div>
+
+    <div class="panel">
+      <h2>Cartões recentes</h2>
+
+      <ul class="list">
+        <li *ngFor="let card of dashboard.recentCards">
+          <strong>{{ card.nome }}</strong>
+          <span class="status" [class.active]="card.status" [class.inactive]="!card.status">
+            {{ card.status ? 'Ativo' : 'Inativo' }}
+          </span>
+        </li>
+      </ul>
+
+      <a routerLink="/client/cards" class="link"> Ver todos os cartões → </a>
+    </div>
+  </div>
+
+  <ng-template #emptyState>
+    <div class="empty-state-clientHome">
+      <h2>Bem-vindo!</h2>
+      <p>
+        Você ainda não possui cartões cadastrados. Crie seu primeiro cartão para começar a utilizar
+        o sistema.
+      </p>
+
+      <button class="btn-clientHome primary" routerLink="/client/cards">
+        Criar meu primeiro cartão
+      </button>
+    </div>
+  </ng-template>
+</ng-container>
