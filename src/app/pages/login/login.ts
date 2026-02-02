@@ -31,6 +31,7 @@ export class Login {
   email = '';
   senha = '';
   error = '';
+  loading = false;
 
   constructor(
     private authService: AuthService,
